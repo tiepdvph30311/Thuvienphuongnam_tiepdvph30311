@@ -1,0 +1,21 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- ListView chiếm toàn bộ không gian -->
+    <ListView
+        android:id="@+id/lvThuThu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- FloatingActionButton được đặt ở góc dưới bên phải -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAddThuThu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        app:srcCompat="@drawable/add_24px"
+        android:contentDescription="Thêm Thủ Thư"
+        android:layout_margin="16dp"/>
+</FrameLayout>

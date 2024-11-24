@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+       <TextView
+           android:id="@+id/txtMaTT"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Mã thủ thư" />
+
+       <TextView
+           android:id="@+id/txtHoTen"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Họ tên" />
+   </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"> <!-- Căn lề phải -->
+
+        <ImageView
+            android:id="@+id/btnEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="Edit"
+            android:background="@drawable/baseline_edit_24"/>
+
+        <ImageView
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Delete"
+            android:background="@drawable/baseline_delete_24"/>
+    </LinearLayout>
+
+</LinearLayout>

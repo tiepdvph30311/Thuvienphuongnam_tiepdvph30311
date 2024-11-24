@@ -1,0 +1,26 @@
+<!-- dialog_sua_sach.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+    <Spinner
+        android:id="@+id/spinnerMaLoai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtTenSach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên sách"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edtGiaThue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Giá thuê"
+        android:inputType="numberDecimal" />
+
+
+</LinearLayout>
