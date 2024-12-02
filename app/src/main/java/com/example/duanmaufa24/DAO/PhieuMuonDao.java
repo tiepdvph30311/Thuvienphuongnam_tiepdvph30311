@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PhieuMuonDao {
+    private DbHelper dbHelper;
     private SQLiteDatabase db;
 
     public PhieuMuonDao(Context context) {
@@ -32,6 +33,9 @@ public class PhieuMuonDao {
         values.put("TienThue", phieuMuon.getTienThue());
         values.put("TrangThaiMuon", phieuMuon.getTrangThaiMuon());
 
+        // Log trạng thái TrangThaiMuon khi thêm phiếu mượn
+        Log.d("PhieuMuonDao", "Insert - TrangThaiMuon: " + phieuMuon.getTrangThaiMuon());
+
         try {
             long result = db.insert("phieumuon", null, values);
             Log.d("PhieuMuonDao", "Insert result: " + result);
@@ -41,6 +45,7 @@ public class PhieuMuonDao {
             return -1;
         }
     }
+
 
     // Cập nhật phiếu mượn
     public int update(PhieuMuon phieuMuon) {
@@ -52,8 +57,13 @@ public class PhieuMuonDao {
         values.put("TraSach", phieuMuon.getTraSach());
         values.put("TienThue", phieuMuon.getTienThue());
         values.put("TrangThaiMuon", phieuMuon.getTrangThaiMuon());  // Cập nhật trạng thái mượn sách
+
+        // Log trạng thái TrangThaiMuon khi cập nhật phiếu mượn
+        Log.d("PhieuMuonDao", "Update - TrangThaiMuon: " + phieuMuon.getTrangThaiMuon());
+
         return db.update("phieumuon", values, "MaPM=?", new String[]{String.valueOf(phieuMuon.getMaPM())});
     }
+
 
     // Xóa phiếu mượn
     public int delete(String maPM) {
@@ -150,4 +160,19 @@ public class PhieuMuonDao {
         }
         return phieuMuon;
     }
+    public double getTongTienThuTrongKhoangThoiGian(String ngayBatDau, String ngayKetThuc) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String query = "SELECT SUM(TienThue) FROM phieumuon WHERE NgayMuon >= ? AND NgayMuon <= ? AND TrangThaiMuon = 1";
+        Cursor cursor = db.rawQuery(query, new String[]{ngayBatDau, ngayKetThuc});
+
+        double totalRevenue = 0;
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                totalRevenue = cursor.getDouble(0);
+            }
+            cursor.close();
+        }
+        return totalRevenue;
+    }
+
 }

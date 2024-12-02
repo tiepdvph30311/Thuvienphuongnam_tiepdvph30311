@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvNgayBatDau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ngày bắt đầu (yyyy-mm-dd)"
+        android:inputType="date" />
+
+    <TextView
+        android:id="@+id/tvNgayKetThuc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ngày kết thúc (yyyy-mm-dd)"
+        android:inputType="date" />
+    <TextView
+        android:id="@+id/tvTongTien"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tong tien :"
+        />
+
+
+    <Button
+        android:id="@+id/btnXemThongKe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xem Thống Kê" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvThongKe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

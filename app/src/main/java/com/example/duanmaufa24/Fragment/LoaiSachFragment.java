@@ -74,6 +74,13 @@ public class LoaiSachFragment extends Fragment {
 
         builder.setPositiveButton("Thêm", (dialog, which) -> {
             String tenLoai = etTenLoai.getText().toString().trim();
+            if (tenLoai.isEmpty()) {
+                etTenLoai.setError("Vui lòng nhập tên loại sách");
+            } else if (tenLoai.length() < 3) {
+                etTenLoai.setError("Tên loại sách phải có ít nhất 3 ký tự");
+            } else if (!tenLoai.matches("[a-zA-Z0-9\\s]+")) { // Kiểm tra tên không chứa ký tự đặc biệt
+                etTenLoai.setError("Tên loại sách không được chứa ký tự đặc biệt");
+            }
 
             if (!tenLoai.isEmpty()) {
                     loaiSachDao = new LoaiSachDao(getContext());

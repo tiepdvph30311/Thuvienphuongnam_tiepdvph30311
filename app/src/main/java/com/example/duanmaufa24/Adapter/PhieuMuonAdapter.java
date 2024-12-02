@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,9 +66,13 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.Phie
             int result = phieuMuonDao.update(phieuMuon);
             if (result > 0) {
                 notifyItemChanged(position);
-                Toast.makeText(context, "Cập nhật trạng thái thành công", Toast.LENGTH_SHORT).show();
+                new Handler(context.getMainLooper()).post(() -> {
+                    Toast.makeText(context, "Cập nhật trạng thái thành công" +TrangThai, Toast.LENGTH_SHORT).show();
+                });
             } else {
-                Toast.makeText(context, "Cập nhật trạng thái thất bại", Toast.LENGTH_SHORT).show();
+                new Handler(context.getMainLooper()).post(() -> {
+                    Toast.makeText(context, "Cập nhật trạng thái thất bại", Toast.LENGTH_SHORT).show();
+                });
             }
         });
 

@@ -123,32 +123,27 @@ public class DbHelper extends SQLiteOpenHelper {
     public double getTongTienThuTrongKhoangThoiGian(String ngayBatDau, String ngayKetThuc) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // Câu truy vấn ban đầu
+        // Câu truy vấn mặc định
         String query = "SELECT SUM(TienThue) FROM phieumuon WHERE TrangThaiMuon = 1";
 
-        // Nếu có ngày bắt đầu và kết thúc, bổ sung điều kiện ngày vào truy vấn
+        // Nếu có điều kiện thời gian, thêm vào câu truy vấn
         if (ngayBatDau != null && !ngayBatDau.isEmpty() && ngayKetThuc != null && !ngayKetThuc.isEmpty()) {
-            query += " AND NgayMuon >= ? AND NgayMuon <= ?";
-            Cursor cursor = db.rawQuery(query, new String[]{ngayBatDau, ngayKetThuc});
-            double totalRevenue = 0;
-            if (cursor != null && cursor.moveToFirst()) {
-                totalRevenue = cursor.getDouble(0);  // Lấy giá trị tổng tiền
-                cursor.close();
-            }
-            db.close();
-            return totalRevenue;
-        } else {
-            // Trường hợp không có ngày bắt đầu và kết thúc, lấy tổng doanh thu mà không điều kiện thời gian
-            Cursor cursor = db.rawQuery(query, null);
-            double totalRevenue = 0;
-            if (cursor != null && cursor.moveToFirst()) {
-                totalRevenue = cursor.getDouble(0);  // Lấy giá trị tổng tiền
-                cursor.close();
-            }
-            db.close();
-            return totalRevenue;
+            query += " AND NgayMuon BETWEEN ? AND ?";
         }
+
+        // Thực thi câu lệnh truy vấn
+        Cursor cursor = db.rawQuery(query, new String[]{ngayBatDau, ngayKetThuc});
+
+        double totalRevenue = 0;
+        if (cursor != null && cursor.moveToFirst()) {
+            totalRevenue = cursor.getDouble(0);  // Lấy giá trị tổng tiền
+            cursor.close();
+        }
+
+        db.close();
+        return totalRevenue;
     }
+
 
 
 
